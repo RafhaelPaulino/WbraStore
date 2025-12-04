@@ -7,7 +7,7 @@
 ---
 
 ## 📊 ETAPA ATUAL
-**ETAPA 2: AUTENTICAÇÃO - CONFIGURANDO NEXTAUTH**
+**ETAPA 3: DOMÍNIO E SERVIÇOS - PRÓXIMA FASE**
 
 ---
 
@@ -37,12 +37,16 @@
 - [x] Testar conexão com banco
 
 ### FASE 2: AUTENTICAÇÃO
-- [ ] Configurar Auth.js (NextAuth)
-- [ ] Configurar Prisma Adapter
-- [ ] Implementar roles (ADMIN, SELLER, BUYER)
-- [ ] Criar middleware de autenticação
-- [ ] Criar páginas de login/registro
-- [ ] Testar fluxo de autenticação
+- [x] Configurar Auth.js (NextAuth)
+- [x] Configurar Prisma Adapter
+- [x] Implementar roles (ADMIN, SELLER, BUYER)
+- [x] Criar middleware de autenticação
+- [x] Criar páginas de login/registro
+- [x] Testar fluxo de autenticação
+- [x] Criar API de registro
+- [x] Criar Header com navegação
+- [x] Integrar SessionProvider
+- [x] Criar primeiro teste unitário
 
 ### FASE 3: DOMÍNIO E SERVIÇOS
 - [ ] Definir entidades do domínio
