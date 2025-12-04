@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Product } from '@prisma/client'
+import ImageUpload from './image-upload'
 
 interface ProductFormProps {
   product?: Product
@@ -201,6 +202,17 @@ export default function ProductForm({ product }: ProductFormProps) {
             </option>
           ))}
         </select>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Imagens do Produto
+        </label>
+        <ImageUpload
+          value={formData.images}
+          onChange={(urls) => setFormData((prev) => ({ ...prev, images: urls }))}
+          maxFiles={5}
+        />
       </div>
 
       <div className="flex items-center">
