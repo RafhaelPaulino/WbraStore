@@ -10,11 +10,11 @@ export function Header() {
   const isLoading = status === 'loading'
 
   return (
-    <header className="glass fixed left-0 right-0 top-0 z-50 border-b border-white/20">
-      <div className="container mx-auto flex h-20 items-center justify-between px-6">
+    <header className="fixed left-0 right-0 top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
+      <div className="container mx-auto flex h-11 items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105">
-          <div className="relative h-10 w-10">
+        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-70">
+          <div className="relative h-6 w-6">
             <Image
               src="/images/Wbra.png"
               alt="Wbra Logo"
@@ -22,14 +22,14 @@ export function Header() {
               className="object-contain"
             />
           </div>
-          <span className="gradient-text text-2xl font-bold">WbraStore</span>
+          <span className="text-sm font-semibold text-gray-900">WbraStore</span>
         </Link>
 
         {/* Navigation */}
-        <nav className="flex items-center gap-8">
+        <nav className="flex items-center gap-6">
           <Link
             href="/products"
-            className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600"
+            className="text-xs font-normal text-gray-700 transition-opacity hover:opacity-70"
           >
             Produtos
           </Link>
@@ -40,34 +40,32 @@ export function Header() {
                 <>
                   <Link
                     href="/cart"
-                    className="relative flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-blue-600"
+                    className="relative flex items-center gap-1 text-xs font-normal text-gray-700 transition-opacity hover:opacity-70"
                   >
-                    <ShoppingCart className="h-5 w-5" />
+                    <ShoppingCart className="h-4 w-4" />
                     <span>Carrinho</span>
                   </Link>
 
                   {session.user.role === 'ADMIN' && (
                     <Link
                       href="/admin"
-                      className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-slate-800 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                      className="flex items-center gap-1 rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white transition-opacity hover:opacity-80"
                     >
-                      <Shield className="h-4 w-4" />
+                      <Shield className="h-3 w-3" />
                       <span>Admin</span>
                     </Link>
                   )}
 
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-slate-800">
-                        <User className="h-4 w-4 text-white" />
-                      </div>
-                      <span className="text-sm font-medium text-gray-900">
+                    <div className="flex items-center gap-1">
+                      <User className="h-4 w-4 text-gray-700" />
+                      <span className="text-xs font-normal text-gray-900">
                         {session.user.name}
                       </span>
                     </div>
                     <button
                       onClick={() => signOut({ callbackUrl: '/' })}
-                      className="flex items-center gap-2 rounded-xl bg-white/50 px-4 py-2 text-sm font-medium text-gray-700 backdrop-blur-sm transition-all hover:bg-white/80"
+                      className="flex items-center gap-1 text-xs font-normal text-gray-700 transition-opacity hover:opacity-70"
                     >
                       <LogOut className="h-4 w-4" />
                       <span>Sair</span>
@@ -78,13 +76,13 @@ export function Header() {
                 <>
                   <Link
                     href="/login"
-                    className="rounded-xl px-6 py-2.5 text-sm font-semibold text-gray-700 transition-all hover:bg-white/50"
+                    className="text-xs font-normal text-gray-700 transition-opacity hover:opacity-70"
                   >
                     Entrar
                   </Link>
                   <Link
                     href="/register"
-                    className="btn-gradient rounded-xl px-6 py-2.5 text-sm shadow-lg"
+                    className="rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white transition-opacity hover:opacity-80"
                   >
                     Criar Conta
                   </Link>
