@@ -115,7 +115,7 @@ export default async function HomePage() {
       {bestSellers.length > 0 && (
         <section className="py-12">
           <div className="container mx-auto px-6">
-            <h2 className="gradient-text mb-8 text-3xl font-bold">Mais Comprados</h2>
+            <h2 className="mb-8 text-3xl font-bold text-gray-900">Mais Comprados</h2>
             <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
               {bestSellers.map((product) => (
                 <Link
@@ -175,7 +175,7 @@ export default async function HomePage() {
       {otherProducts.length > 0 && (
         <section className="py-12">
           <div className="container mx-auto px-6">
-            <h2 className="gradient-text mb-8 text-3xl font-bold">Todos os Produtos</h2>
+            <h2 className="mb-8 text-3xl font-bold text-gray-900">Todos os Produtos</h2>
             <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
               {otherProducts.map((product) => (
                 <Link
