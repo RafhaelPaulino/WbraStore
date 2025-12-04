@@ -2,12 +2,13 @@
 
 > **Documento Mestre de Controle do Projeto**
 > Última Atualização: 2025-12-04
-> Status: INICIANDO PROJETO
+> Status: EM DESENVOLVIMENTO - FRONTEND CONCLUÍDO
 
 ---
 
 ## 📊 ETAPA ATUAL
-**ETAPA 3: DOMÍNIO E SERVIÇOS - PRÓXIMA FASE**
+**ETAPA 6: FRONTEND - LOJA (PARCIALMENTE CONCLUÍDO)**
+**PRÓXIMA: FASE 3 - DOMÍNIO E SERVIÇOS**
 
 ---
 
@@ -47,6 +48,8 @@
 - [x] Criar Header com navegação
 - [x] Integrar SessionProvider
 - [x] Criar primeiro teste unitário
+- [x] Deploy em produção (Vercel)
+- [x] Ajustes de design estilo Apple
 
 ### FASE 3: DOMÍNIO E SERVIÇOS
 - [ ] Definir entidades do domínio
@@ -77,14 +80,18 @@
 - [ ] Testes de transação
 
 ### FASE 6: FRONTEND - LOJA
-- [ ] Configurar shadcn/ui
-- [ ] Layout principal da loja
-- [ ] Página inicial (listagem de produtos)
+- [x] Configurar shadcn/ui
+- [x] Layout principal da loja (Header fino estilo Apple)
+- [x] Página inicial (listagem de produtos com categorias)
+- [x] Design com gradientes e glassmorphism
+- [x] Categorias com fotos reais (estilo Apple)
+- [x] Seção "Mais Comprados" e "Todos os Produtos"
+- [x] API /api/products (GET)
 - [ ] Página de detalhes do produto
 - [ ] Componente de carrinho
 - [ ] Página de checkout
 - [ ] Configurar Zustand (cart store)
-- [ ] Integração com APIs
+- [ ] Integração completa com APIs
 
 ### FASE 7: FRONTEND - PAINEL ADMIN
 - [ ] Layout do painel admin
@@ -187,19 +194,53 @@
 - ✅ Pattern: Repository Pattern para acesso a dados
 - ✅ Organização: App Router com route groups
 
+### 2025-12-04 - Decisões de UI/UX:
+- ✅ Design System: Inspirado na Apple (clean, minimalista)
+- ✅ Header: Altura de 44px (fino como Apple)
+- ✅ Cores da Marca: Azul e Preto
+- ✅ Efeitos: Glassmorphism, gradientes, hover animations
+- ✅ Categorias: Layout horizontal com fotos reais (80x80px)
+- ✅ Produtos: Grid responsivo com cards glassmorphism
+- ✅ Fonte: Títulos em preto, preços com gradiente azul
+
+### 2025-12-04 - Decisões Técnicas:
+- ✅ Downgrade Prisma 7 → Prisma 6 (compatibilidade)
+- ✅ NextAuth JWT strategy (sem PrismaAdapter no Edge)
+- ✅ Middleware leve com cookies (Edge Function < 1MB)
+- ✅ Tailwind v4 com CSS puro (sem @apply em custom classes)
+- ✅ Imagens externas: Unsplash para placeholders de categorias
+
 ---
 
 ## 🎯 PRÓXIMOS PASSOS
 
-1. **Aguardar confirmação do usuário**
-2. **Executar primeiro comando: `npm init -y`**
-3. **Instalar dependências base**
-4. **Configurar TypeScript**
-5. **Configurar Tailwind CSS**
-6. **Configurar ESLint + Prettier**
-7. **Criar estrutura de pastas**
-8. **Solicitar criação do projeto Vercel**
-9. **Solicitar criação do banco Neon**
+### FASE 3: DOMÍNIO E SERVIÇOS (PRÓXIMA)
+1. **Definir entidades do domínio**
+   - Product, Category, Order, OrderItem, Payment, Cart, User
+2. **Criar interfaces de repositórios**
+   - IProductRepository, ICategoryRepository, IOrderRepository
+3. **Implementar repositórios Prisma**
+   - ProductRepository, CategoryRepository, OrderRepository
+4. **Criar serviços de negócio**
+   - ProductService, OrderService, CartService
+5. **Validadores e DTOs**
+   - CreateProductDTO, UpdateProductDTO, CreateOrderDTO
+
+### FASE 4: API BACKEND (SEGUINTE)
+1. **APIs de Produtos**
+   - GET /api/products (✅ já existe básico)
+   - POST /api/products (criar)
+   - PUT /api/products/:id (atualizar)
+   - DELETE /api/products/:id (deletar)
+2. **APIs de Carrinho**
+   - GET /api/cart
+   - POST /api/cart/add
+   - PUT /api/cart/update
+   - DELETE /api/cart/remove
+3. **APIs de Pedidos**
+   - POST /api/orders (criar pedido)
+   - GET /api/orders (listar pedidos do usuário)
+   - GET /api/orders/:id (detalhes do pedido)
 
 ---
 
@@ -258,24 +299,34 @@ RECARREGAR CONTEXTO:
 
 ## 📊 MÉTRICAS DO PROJETO
 
-- **Progresso Geral:** 5% (setup inicial)
-- **Arquivos Criados:** 1 (MASTER_CONTROL.md)
-- **Testes Escritos:** 0
-- **Cobertura de Testes:** 0%
-- **APIs Implementadas:** 0
-- **Páginas Implementadas:** 0
+- **Progresso Geral:** 35% (setup + auth + frontend inicial)
+- **Arquivos Criados:** 20+
+- **Testes Escritos:** 1 (auth test)
+- **Cobertura de Testes:** ~10%
+- **APIs Implementadas:** 2 (auth/register, products GET)
+- **Páginas Implementadas:** 4 (home, login, register, admin básico)
+- **Commits:** 10+ commits no repositório
+- **Deploy:** ✅ Produção na Vercel
 
 ---
 
 ## 🚨 BLOQUEADORES E PENDÊNCIAS
 
-### Aguardando do Usuário:
-- [ ] Confirmação para iniciar instalação de dependências
-- [ ] Criação do projeto na Vercel (será solicitado em breve)
-- [ ] Criação do banco Neon (será solicitado em breve)
-- [ ] Chave de serviço de upload (Cloudinary ou UploadThing)
-- [ ] Chave do Sentry (para observabilidade)
-- [ ] Credenciais Cielo (Merchant ID e Merchant Key)
+### ✅ Concluído pelo Usuário:
+- [x] Criação do projeto na Vercel
+- [x] Criação do banco Neon
+- [x] Configuração das variáveis de ambiente em produção
+
+### Aguardando do Usuário (FUTURO):
+- [ ] Chave de serviço de upload (Cloudinary ou UploadThing) - FASE 8
+- [ ] Chave do Sentry (para observabilidade) - FASE 9
+- [ ] Credenciais Cielo (Merchant ID e Merchant Key) - FASE 5
+
+### Sem Bloqueadores Atuais:
+- Projeto rodando em produção
+- Banco de dados configurado
+- Autenticação funcionando
+- Frontend básico implementado
 
 ---
 
