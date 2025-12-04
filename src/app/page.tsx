@@ -82,34 +82,25 @@ export default async function HomePage() {
       {categories.length > 0 && (
         <section className="py-8">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-3 gap-6 md:gap-8">
+            <div className="flex items-center justify-center gap-12">
               {categories.map((category) => {
                 const Icon = categoryIcons[category.slug] || Laptop
                 return (
                   <Link
                     key={category.id}
                     href={`/products?category=${category.id}`}
-                    className="group"
+                    className="group flex flex-col items-center"
                   >
-                    <div className="glass overflow-hidden rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                      {/* Category Icon/Image */}
-                      <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50">
-                        <div className="flex h-full items-center justify-center">
-                          <Icon className="h-16 w-16 text-blue-600 md:h-24 md:w-24" />
-                        </div>
-                      </div>
-                      {/* Category Name */}
-                      <div className="p-4 text-center">
-                        <h3 className="text-base font-semibold text-gray-900 md:text-lg">
-                          {category.name}
-                        </h3>
-                        {category.description && (
-                          <p className="mt-1 text-xs text-gray-600 md:text-sm">
-                            {category.description}
-                          </p>
-                        )}
+                    {/* Category Image/Icon */}
+                    <div className="relative mb-3 h-20 w-20 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 transition-all duration-300 group-hover:scale-110">
+                      <div className="flex h-full items-center justify-center">
+                        <Icon className="h-10 w-10 text-blue-600" />
                       </div>
                     </div>
+                    {/* Category Name */}
+                    <h3 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
+                      {category.name}
+                    </h3>
                   </Link>
                 )
               })}
