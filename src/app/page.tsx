@@ -2,13 +2,12 @@ import { Header } from '@/components/layout/header'
 import prisma from '@/lib/prisma'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Laptop, Shirt, Book } from 'lucide-react'
 
-// Mapeamento de ícones para categorias
-const categoryIcons: Record<string, any> = {
-  electronics: Laptop,
-  clothing: Shirt,
-  books: Book,
+// Mapeamento de imagens placeholder para categorias
+const categoryImages: Record<string, string> = {
+  electronics: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop',
+  clothing: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200&h=200&fit=crop',
+  books: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=200&h=200&fit=crop',
 }
 
 async function getDataForHome() {
@@ -84,18 +83,21 @@ export default async function HomePage() {
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-center gap-12">
               {categories.map((category) => {
-                const Icon = categoryIcons[category.slug] || Laptop
+                const imageUrl = category.image || categoryImages[category.slug] || categoryImages.electronics
                 return (
                   <Link
                     key={category.id}
                     href={`/products?category=${category.id}`}
                     className="group flex flex-col items-center"
                   >
-                    {/* Category Image/Icon */}
-                    <div className="relative mb-3 h-20 w-20 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 transition-all duration-300 group-hover:scale-110">
-                      <div className="flex h-full items-center justify-center">
-                        <Icon className="h-10 w-10 text-blue-600" />
-                      </div>
+                    {/* Category Image */}
+                    <div className="relative mb-3 h-20 w-20 overflow-hidden rounded-2xl transition-all duration-300 group-hover:scale-110">
+                      <Image
+                        src={imageUrl}
+                        alt={category.name}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                     {/* Category Name */}
                     <h3 className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
