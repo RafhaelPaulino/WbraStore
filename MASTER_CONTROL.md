@@ -7,8 +7,8 @@
 ---
 
 ## 📊 ETAPA ATUAL
-**ETAPA: FASE 6 - FRONTEND LOJA (PARCIALMENTE CONCLUÍDA)**
-**PRÓXIMA: FASE 5 - INTEGRAÇÃO CIELO ou FASE 7 - PAINEL ADMIN**
+**ETAPA: FASE 5 - INTEGRAÇÃO CIELO (CONCLUÍDA)**
+**PRÓXIMA: FASE 7 - PAINEL ADMIN**
 
 ---
 
@@ -73,13 +73,16 @@
 - [ ] Logging estruturado
 
 ### FASE 5: INTEGRAÇÃO CIELO
-- [ ] Configurar SDK cielo-node
-- [ ] Implementar serviço de pagamento
-- [ ] API /api/payment/cielo/authorize
-- [ ] API /api/payment/cielo/capture
-- [ ] API /api/payment/cielo/cancel
-- [ ] Webhooks Cielo
-- [ ] Testes de transação
+- [x] Instalar SDK cielo
+- [x] Criar tipos e interfaces de pagamento
+- [x] Implementar PaymentService
+- [x] API /api/payment/authorize
+- [x] API /api/payment/capture
+- [x] API /api/payment/cancel
+- [x] Webhooks Cielo (/api/webhooks/cielo)
+- [x] Helpers de mapeamento de status
+- [x] Atualizar .env.example com credenciais
+- [ ] Testes de transação (aguarda credenciais)
 
 ### FASE 6: FRONTEND - LOJA
 - [x] Configurar shadcn/ui
