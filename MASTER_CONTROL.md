@@ -7,7 +7,7 @@
 ---
 
 ## 📊 ETAPA ATUAL
-**ETAPA 1: INFRAESTRUTURA - PREPARANDO BANCO E PRISMA**
+**ETAPA 2: AUTENTICAÇÃO - CONFIGURANDO NEXTAUTH**
 
 ---
 
@@ -27,13 +27,14 @@
 - [x] Testar build inicial
 
 ### FASE 1: INFRAESTRUTURA
-- [ ] Solicitar criação do projeto na Vercel
-- [ ] Solicitar criação do banco Neon
+- [x] Solicitar criação do projeto na Vercel
+- [x] Solicitar criação do banco Neon
 - [x] Configurar variáveis de ambiente (.env.example)
-- [ ] Configurar Prisma
-- [ ] Definir schema do banco completo
-- [ ] Criar migrations iniciais
-- [ ] Criar seed inicial
+- [x] Configurar Prisma
+- [x] Definir schema do banco completo
+- [x] Criar migrations iniciais (db push)
+- [x] Criar seed inicial
+- [x] Testar conexão com banco
 
 ### FASE 2: AUTENTICAÇÃO
 - [ ] Configurar Auth.js (NextAuth)
