@@ -4,10 +4,14 @@ import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCart, User, LogOut, Shield } from 'lucide-react'
+import { useCartStore } from '@/stores/cart-store'
+import { Button } from '@/components/ui/button'
 
 export function Header() {
   const { data: session, status } = useSession()
   const isLoading = status === 'loading'
+  const { getItemCount, openCart } = useCartStore()
+  const itemCount = getItemCount()
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
@@ -38,13 +42,20 @@ export function Header() {
             <>
               {session ? (
                 <>
-                  <Link
-                    href="/cart"
-                    className="relative flex items-center gap-1 text-xs font-normal text-gray-700 transition-opacity hover:opacity-70"
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={openCart}
+                    className="relative flex items-center gap-1 h-8 px-3 text-xs font-normal text-gray-700 hover:bg-gray-100"
                   >
                     <ShoppingCart className="h-4 w-4" />
                     <span>Carrinho</span>
-                  </Link>
+                    {itemCount > 0 && (
+                      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
+                        {itemCount}
+                      </span>
+                    )}
+                  </Button>
 
                   {session.user.role === 'ADMIN' && (
                     <Link

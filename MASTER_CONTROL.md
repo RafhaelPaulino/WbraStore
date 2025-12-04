@@ -7,8 +7,8 @@
 ---
 
 ## 📊 ETAPA ATUAL
-**ETAPA: FASE 4 - API BACKEND (CONCLUÍDA)**
-**PRÓXIMA: FASE 5 - INTEGRAÇÃO CIELO**
+**ETAPA: FASE 6 - FRONTEND LOJA (PARCIALMENTE CONCLUÍDA)**
+**PRÓXIMA: FASE 5 - INTEGRAÇÃO CIELO ou FASE 7 - PAINEL ADMIN**
 
 ---
 
@@ -89,11 +89,13 @@
 - [x] Categorias com fotos reais (estilo Apple)
 - [x] Seção "Mais Comprados" e "Todos os Produtos"
 - [x] API /api/products (GET)
-- [ ] Página de detalhes do produto
-- [ ] Componente de carrinho
+- [x] Página de detalhes do produto
+- [x] Componente de carrinho (drawer)
+- [x] Configurar Zustand (cart store)
+- [x] Header com contador do carrinho
+- [x] Botão "Adicionar ao Carrinho"
 - [ ] Página de checkout
-- [ ] Configurar Zustand (cart store)
-- [ ] Integração completa com APIs
+- [ ] Integração completa com APIs de backend
 
 ### FASE 7: FRONTEND - PAINEL ADMIN
 - [ ] Layout do painel admin

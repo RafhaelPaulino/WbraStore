@@ -120,7 +120,7 @@ export default async function HomePage() {
               {bestSellers.map((product) => (
                 <Link
                   key={product.id}
-                  href={`/products/${product.slug}`}
+                  href={`/product/${product.slug}`}
                   className="group"
                 >
                   <div className="glass overflow-hidden rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
@@ -180,7 +180,7 @@ export default async function HomePage() {
               {otherProducts.map((product) => (
                 <Link
                   key={product.id}
-                  href={`/products/${product.slug}`}
+                  href={`/product/${product.slug}`}
                   className="group"
                 >
                   <div className="glass overflow-hidden rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
