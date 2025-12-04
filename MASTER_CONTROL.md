@@ -2,13 +2,13 @@
 
 > **Documento Mestre de Controle do Projeto**
 > Última Atualização: 2025-12-04
-> Status: EM DESENVOLVIMENTO - FRONTEND CONCLUÍDO
+> Status: EM DESENVOLVIMENTO - FASE 4 CONCLUÍDA
 
 ---
 
 ## 📊 ETAPA ATUAL
-**ETAPA 6: FRONTEND - LOJA (PARCIALMENTE CONCLUÍDO)**
-**PRÓXIMA: FASE 3 - DOMÍNIO E SERVIÇOS**
+**ETAPA: FASE 4 - API BACKEND (CONCLUÍDA)**
+**PRÓXIMA: FASE 5 - INTEGRAÇÃO CIELO**
 
 ---
 
@@ -52,22 +52,24 @@
 - [x] Ajustes de design estilo Apple
 
 ### FASE 3: DOMÍNIO E SERVIÇOS
-- [ ] Definir entidades do domínio
-- [ ] Criar interfaces de repositórios
-- [ ] Implementar repositórios Prisma
-- [ ] Criar serviços de negócio (produtos)
-- [ ] Criar serviços de negócio (pedidos)
-- [ ] Criar serviços de negócio (usuários)
-- [ ] Validadores e DTOs
+- [x] Definir entidades do domínio
+- [x] Criar interfaces de repositórios
+- [x] Implementar repositórios Prisma
+- [x] Criar serviços de negócio (produtos)
+- [x] Criar serviços de negócio (pedidos)
+- [x] Criar serviços de negócio (usuários)
+- [x] Validadores e DTOs
 
 ### FASE 4: API BACKEND
-- [ ] API /api/products (CRUD completo)
-- [ ] API /api/orders (CRUD completo)
-- [ ] API /api/users (CRUD completo)
-- [ ] API /api/cart (gestão de carrinho)
-- [ ] API /api/upload (upload de imagens)
-- [ ] Middlewares de erro
-- [ ] Middlewares de validação
+- [x] API /api/products (CRUD completo)
+- [x] API /api/categories (CRUD completo)
+- [x] API /api/orders (CRUD completo)
+- [x] API /api/users (CRUD completo)
+- [x] API /api/cart (gestão de carrinho)
+- [x] Helpers de API (api-utils.ts)
+- [x] Middlewares de erro
+- [x] Middlewares de validação
+- [ ] API /api/upload (upload de imagens) - FASE 8
 - [ ] Logging estruturado
 
 ### FASE 5: INTEGRAÇÃO CIELO
@@ -210,37 +212,85 @@
 - ✅ Tailwind v4 com CSS puro (sem @apply em custom classes)
 - ✅ Imagens externas: Unsplash para placeholders de categorias
 
+### 2025-12-04 - FASE 4 Implementada:
+- ✅ API utils com helpers (successResponse, errorResponse, requireAuth, etc.)
+- ✅ Classes de erro customizadas (ApiError, UnauthorizedError, ForbiddenError, etc.)
+- ✅ Paginação padronizada
+- ✅ Validação com Zod em todas as rotas
+
 ---
 
 ## 🎯 PRÓXIMOS PASSOS
 
-### FASE 3: DOMÍNIO E SERVIÇOS (PRÓXIMA)
-1. **Definir entidades do domínio**
-   - Product, Category, Order, OrderItem, Payment, Cart, User
-2. **Criar interfaces de repositórios**
-   - IProductRepository, ICategoryRepository, IOrderRepository
-3. **Implementar repositórios Prisma**
-   - ProductRepository, CategoryRepository, OrderRepository
-4. **Criar serviços de negócio**
-   - ProductService, OrderService, CartService
-5. **Validadores e DTOs**
-   - CreateProductDTO, UpdateProductDTO, CreateOrderDTO
+### FASE 5: INTEGRAÇÃO CIELO (PRÓXIMA)
+1. **Aguardar credenciais Cielo do usuário**
+   - Merchant ID
+   - Merchant Key
+2. **Configurar SDK cielo-node**
+3. **Implementar PaymentService**
+4. **APIs de Pagamento**
+   - POST /api/payment/cielo/authorize
+   - POST /api/payment/cielo/capture
+   - POST /api/payment/cielo/cancel
+5. **Webhooks para notificações**
 
-### FASE 4: API BACKEND (SEGUINTE)
-1. **APIs de Produtos**
-   - GET /api/products (✅ já existe básico)
-   - POST /api/products (criar)
-   - PUT /api/products/:id (atualizar)
-   - DELETE /api/products/:id (deletar)
-2. **APIs de Carrinho**
-   - GET /api/cart
-   - POST /api/cart/add
-   - PUT /api/cart/update
-   - DELETE /api/cart/remove
-3. **APIs de Pedidos**
-   - POST /api/orders (criar pedido)
-   - GET /api/orders (listar pedidos do usuário)
-   - GET /api/orders/:id (detalhes do pedido)
+### FASE 6: FRONTEND - LOJA (SEGUINTE)
+1. **Página de detalhes do produto**
+2. **Zustand para carrinho**
+3. **Componente de carrinho (drawer/sidebar)**
+4. **Página de checkout**
+
+---
+
+## 📚 APIs IMPLEMENTADAS
+
+### Produtos (/api/products)
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| GET | /api/products | Listar produtos | Público |
+| POST | /api/products | Criar produto | Admin/Seller |
+| GET | /api/products/[id] | Buscar por ID | Público |
+| PUT | /api/products/[id] | Atualizar | Admin/Seller |
+| DELETE | /api/products/[id] | Deletar | Admin/Seller |
+| GET | /api/products/slug/[slug] | Buscar por slug | Público |
+
+### Categorias (/api/categories)
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| GET | /api/categories | Listar categorias | Público |
+| POST | /api/categories | Criar categoria | Admin |
+| GET | /api/categories/[id] | Buscar por ID | Público |
+| PUT | /api/categories/[id] | Atualizar | Admin |
+| DELETE | /api/categories/[id] | Deletar | Admin |
+
+### Pedidos (/api/orders)
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| GET | /api/orders | Listar pedidos | Autenticado |
+| POST | /api/orders | Criar pedido | Autenticado |
+| GET | /api/orders/[id] | Buscar por ID | Autenticado |
+| PUT | /api/orders/[id] | Atualizar status | Admin |
+| DELETE | /api/orders/[id] | Cancelar pedido | Autenticado |
+
+### Usuários (/api/users)
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| GET | /api/users | Listar usuários | Admin |
+| GET | /api/users/me | Perfil do usuário | Autenticado |
+| PUT | /api/users/me | Atualizar perfil | Autenticado |
+| PATCH | /api/users/me | Atualizar senha | Autenticado |
+| GET | /api/users/[id] | Buscar por ID | Admin |
+| PUT | /api/users/[id] | Atualizar usuário | Admin |
+| DELETE | /api/users/[id] | Deletar usuário | Admin |
+
+### Carrinho (/api/cart)
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| GET | /api/cart | Buscar carrinho | Autenticado |
+| POST | /api/cart | Adicionar item | Autenticado |
+| DELETE | /api/cart | Limpar carrinho | Autenticado |
+| PUT | /api/cart/items/[itemId] | Atualizar quantidade | Autenticado |
+| DELETE | /api/cart/items/[itemId] | Remover item | Autenticado |
 
 ---
 
@@ -265,12 +315,12 @@ RECARREGAR CONTEXTO:
 
 ## 🔍 AUDITORIA TÉCNICA
 
-### Última Auditoria: PENDENTE
-- Arquitetura: ✅ DEFINIDA
-- Consistência: ⏳ AGUARDANDO CÓDIGO
-- Segurança: ⏳ AGUARDANDO IMPLEMENTAÇÃO
+### Última Auditoria: FASE 4 CONCLUÍDA
+- Arquitetura: ✅ Clean Architecture implementada
+- Consistência: ✅ Padrão de APIs consistente
+- Segurança: ✅ Auth em todas as rotas protegidas
 - Performance: ⏳ AGUARDANDO IMPLEMENTAÇÃO
-- Qualidade: ⏳ AGUARDANDO CÓDIGO
+- Qualidade: ✅ Código TypeScript tipado
 - Testes: ⏳ AGUARDANDO IMPLEMENTAÇÃO
 
 ---
@@ -299,13 +349,13 @@ RECARREGAR CONTEXTO:
 
 ## 📊 MÉTRICAS DO PROJETO
 
-- **Progresso Geral:** 35% (setup + auth + frontend inicial)
-- **Arquivos Criados:** 20+
+- **Progresso Geral:** 45% (setup + auth + domínio + APIs)
+- **Arquivos Criados:** 40+
 - **Testes Escritos:** 1 (auth test)
 - **Cobertura de Testes:** ~10%
-- **APIs Implementadas:** 2 (auth/register, products GET)
+- **APIs Implementadas:** 18 endpoints
 - **Páginas Implementadas:** 4 (home, login, register, admin básico)
-- **Commits:** 10+ commits no repositório
+- **Commits:** 15+ commits no repositório
 - **Deploy:** ✅ Produção na Vercel
 
 ---
@@ -318,15 +368,16 @@ RECARREGAR CONTEXTO:
 - [x] Configuração das variáveis de ambiente em produção
 
 ### Aguardando do Usuário (FUTURO):
+- [ ] Credenciais Cielo (Merchant ID e Merchant Key) - FASE 5
 - [ ] Chave de serviço de upload (Cloudinary ou UploadThing) - FASE 8
 - [ ] Chave do Sentry (para observabilidade) - FASE 9
-- [ ] Credenciais Cielo (Merchant ID e Merchant Key) - FASE 5
 
 ### Sem Bloqueadores Atuais:
 - Projeto rodando em produção
 - Banco de dados configurado
 - Autenticação funcionando
 - Frontend básico implementado
+- APIs de backend completas
 
 ---
 
