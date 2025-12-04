@@ -3,6 +3,8 @@ import Link from 'next/link'
 import CategoriesTable from '@/components/admin/categories-table'
 import { Plus } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default function AdminCategoriesPage() {
   return (
     <div className="space-y-6">
