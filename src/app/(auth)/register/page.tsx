@@ -73,7 +73,7 @@ export default function RegisterPage() {
       <div className="mb-8 text-center">
         <div className="mb-4 flex justify-center">
           <div className="relative h-16 w-16">
-            <Image src="/wbra-logo.png" alt="Wbra Logo" fill className="object-contain" />
+            <Image src="/images/Wbra.png" alt="Wbra Logo" fill className="object-contain" />
           </div>
         </div>
         <h1 className="gradient-text text-3xl font-bold">Criar Conta</h1>
@@ -101,7 +101,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               placeholder="Seu nome"
-              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
               placeholder="seu@email.com"
-              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
           </div>
         </div>
@@ -140,7 +140,7 @@ export default function RegisterPage() {
               required
               minLength={6}
               placeholder="Mínimo 6 caracteres"
-              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function RegisterPage() {
               required
               minLength={6}
               placeholder="Digite a senha novamente"
-              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
           </div>
         </div>
@@ -177,18 +177,18 @@ export default function RegisterPage() {
         </button>
       </form>
 
-      <div className="mt-6 space-y-2 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 p-4">
+      <div className="mt-6 space-y-2 rounded-xl bg-gradient-to-r from-blue-50 to-slate-50 p-4">
         <p className="text-xs font-semibold text-gray-700">Ao criar uma conta, você ganha:</p>
         <div className="flex items-center gap-2 text-xs text-gray-600">
-          <Check className="h-4 w-4 text-purple-600" />
+          <Check className="h-4 w-4 text-blue-600" />
           <span>Acesso a ofertas exclusivas</span>
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-600">
-          <Check className="h-4 w-4 text-purple-600" />
+          <Check className="h-4 w-4 text-blue-600" />
           <span>Checkout rápido e seguro</span>
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-600">
-          <Check className="h-4 w-4 text-purple-600" />
+          <Check className="h-4 w-4 text-blue-600" />
           <span>Acompanhe seus pedidos</span>
         </div>
       </div>
@@ -202,7 +202,7 @@ export default function RegisterPage() {
       <div className="text-center">
         <p className="text-sm text-gray-600">
           Já tem uma conta?{' '}
-          <Link href="/login" className="font-semibold text-purple-600 transition-colors hover:text-purple-700">
+          <Link href="/login" className="font-semibold text-blue-600 transition-colors hover:text-blue-700">
             Fazer login
           </Link>
         </p>

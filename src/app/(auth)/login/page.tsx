@@ -45,7 +45,7 @@ export default function LoginPage() {
       <div className="mb-8 text-center">
         <div className="mb-4 flex justify-center">
           <div className="relative h-16 w-16">
-            <Image src="/wbra-logo.png" alt="Wbra Logo" fill className="object-contain" />
+            <Image src="/images/Wbra.png" alt="Wbra Logo" fill className="object-contain" />
           </div>
         </div>
         <h1 className="gradient-text text-3xl font-bold">Bem-vindo de volta</h1>
@@ -73,7 +73,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="seu@email.com"
-              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
-              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+              className="w-full rounded-xl border border-gray-200 bg-white/50 py-3 pl-12 pr-4 backdrop-blur-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function LoginPage() {
           Não tem uma conta?{' '}
           <Link
             href="/register"
-            className="font-semibold text-purple-600 transition-colors hover:text-purple-700"
+            className="font-semibold text-blue-600 transition-colors hover:text-blue-700"
           >
             Criar conta grátis
           </Link>
@@ -131,9 +131,9 @@ export default function LoginPage() {
       </div>
 
       {/* Test Credentials */}
-      <div className="mt-6 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 p-4">
+      <div className="mt-6 rounded-xl bg-gradient-to-r from-blue-50 to-slate-50 p-4">
         <div className="mb-2 flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-purple-600" />
+          <Sparkles className="h-4 w-4 text-blue-600" />
           <p className="text-xs font-semibold text-gray-700">Para testar:</p>
         </div>
         <p className="text-xs font-mono text-gray-600">admin@wbrastore.com / admin123</p>

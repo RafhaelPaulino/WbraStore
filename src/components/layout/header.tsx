@@ -16,7 +16,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105">
           <div className="relative h-10 w-10">
             <Image
-              src="/wbra-logo.png"
+              src="/images/Wbra.png"
               alt="Wbra Logo"
               fill
               className="object-contain"
@@ -29,7 +29,7 @@ export function Header() {
         <nav className="flex items-center gap-8">
           <Link
             href="/products"
-            className="text-sm font-medium text-gray-700 transition-colors hover:text-purple-600"
+            className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600"
           >
             Produtos
           </Link>
@@ -40,7 +40,7 @@ export function Header() {
                 <>
                   <Link
                     href="/cart"
-                    className="relative flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-purple-600"
+                    className="relative flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-blue-600"
                   >
                     <ShoppingCart className="h-5 w-5" />
                     <span>Carrinho</span>
@@ -49,7 +49,7 @@ export function Header() {
                   {session.user.role === 'ADMIN' && (
                     <Link
                       href="/admin"
-                      className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                      className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-slate-800 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                     >
                       <Shield className="h-4 w-4" />
                       <span>Admin</span>
@@ -58,7 +58,7 @@ export function Header() {
 
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-pink-600">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-slate-800">
                         <User className="h-4 w-4 text-white" />
                       </div>
                       <span className="text-sm font-medium text-gray-900">
