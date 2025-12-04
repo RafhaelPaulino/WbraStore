@@ -2,6 +2,14 @@ import { Header } from '@/components/layout/header'
 import prisma from '@/lib/prisma'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Laptop, Shirt, Book } from 'lucide-react'
+
+// Mapeamento de ícones para categorias
+const categoryIcons: Record<string, any> = {
+  electronics: Laptop,
+  clothing: Shirt,
+  books: Book,
+}
 
 async function getDataForHome() {
   try {
@@ -45,15 +53,23 @@ export default async function HomePage() {
   const { categories, bestSellers, otherProducts } = await getDataForHome()
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
 
-      {/* Hero Section - Minimal like Apple */}
-      <section className="relative overflow-hidden pt-16 pb-8">
+      {/* Hero Section with Gradient Background */}
+      <section className="relative overflow-hidden pt-20 pb-12">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-20 blur-3xl" />
+          <div className="absolute right-0 top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-gradient-to-r from-blue-500 to-slate-600 opacity-20 blur-3xl" />
+        </div>
+
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="animate-fade-in mb-2 text-4xl font-semibold text-gray-900 md:text-5xl">
-              Tecnologia que inspira. Preços que cabem no bolso.
+            <h1 className="animate-fade-in mb-4 text-4xl font-bold leading-tight md:text-5xl">
+              <span className="gradient-text">Tecnologia que inspira.</span>
+              <br />
+              Preços que cabem no bolso.
             </h1>
             <p className="animate-fade-in text-lg text-gray-600">
               Descubra produtos incríveis com qualidade garantida.
@@ -62,20 +78,41 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Categories Section */}
+      {/* Categories Section - Apple Style */}
       {categories.length > 0 && (
-        <section className="border-b border-gray-200 py-4">
+        <section className="py-8">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-8">
-              {categories.map((category) => (
-                <Link
-                  key={category.id}
-                  href={`/products?category=${category.id}`}
-                  className="text-xs font-normal text-gray-700 transition-opacity hover:opacity-70"
-                >
-                  {category.name}
-                </Link>
-              ))}
+            <div className="grid grid-cols-3 gap-6 md:gap-8">
+              {categories.map((category) => {
+                const Icon = categoryIcons[category.slug] || Laptop
+                return (
+                  <Link
+                    key={category.id}
+                    href={`/products?category=${category.id}`}
+                    className="group"
+                  >
+                    <div className="glass overflow-hidden rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                      {/* Category Icon/Image */}
+                      <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50">
+                        <div className="flex h-full items-center justify-center">
+                          <Icon className="h-16 w-16 text-blue-600 md:h-24 md:w-24" />
+                        </div>
+                      </div>
+                      {/* Category Name */}
+                      <div className="p-4 text-center">
+                        <h3 className="text-base font-semibold text-gray-900 md:text-lg">
+                          {category.name}
+                        </h3>
+                        {category.description && (
+                          <p className="mt-1 text-xs text-gray-600 md:text-sm">
+                            {category.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -85,43 +122,52 @@ export default async function HomePage() {
       {bestSellers.length > 0 && (
         <section className="py-12">
           <div className="container mx-auto px-6">
-            <h2 className="mb-8 text-2xl font-semibold text-gray-900">Mais Comprados</h2>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+            <h2 className="gradient-text mb-8 text-3xl font-bold">Mais Comprados</h2>
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
               {bestSellers.map((product) => (
                 <Link
                   key={product.id}
                   href={`/products/${product.slug}`}
                   className="group"
                 >
-                  <div className="overflow-hidden rounded-2xl bg-gray-50 transition-all duration-300 hover:shadow-lg">
+                  <div className="glass overflow-hidden rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                     {/* Product Image */}
-                    <div className="relative aspect-square w-full overflow-hidden bg-white">
+                    <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
                       {product.images[0] ? (
                         <Image
                           src={product.images[0]}
                           alt={product.name}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       ) : (
-                        <div className="flex h-full items-center justify-center text-gray-300">
+                        <div className="flex h-full items-center justify-center text-gray-400">
                           <span className="text-sm">Sem imagem</span>
                         </div>
                       )}
                     </div>
 
                     {/* Product Info */}
-                    <div className="p-4">
-                      <div className="mb-1 text-xs font-medium text-blue-600">
+                    <div className="p-6">
+                      <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
                         {product.category.name}
                       </div>
-                      <h3 className="mb-2 text-base font-semibold text-gray-900 line-clamp-2">
+                      <h3 className="mb-2 text-lg font-bold text-gray-900 line-clamp-2">
                         {product.name}
                       </h3>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-lg font-semibold text-gray-900">
+                      <div className="flex items-center justify-between">
+                        <span className="gradient-text text-2xl font-bold">
                           R$ {Number(product.price).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </span>
+                        {product.stock > 0 ? (
+                          <span className="text-xs font-semibold text-green-600">
+                            Em estoque
+                          </span>
+                        ) : (
+                          <span className="text-xs font-semibold text-red-600">
+                            Esgotado
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -134,45 +180,54 @@ export default async function HomePage() {
 
       {/* Other Products Section */}
       {otherProducts.length > 0 && (
-        <section className="py-12 bg-gray-50">
+        <section className="py-12">
           <div className="container mx-auto px-6">
-            <h2 className="mb-8 text-2xl font-semibold text-gray-900">Todos os Produtos</h2>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+            <h2 className="gradient-text mb-8 text-3xl font-bold">Todos os Produtos</h2>
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
               {otherProducts.map((product) => (
                 <Link
                   key={product.id}
                   href={`/products/${product.slug}`}
                   className="group"
                 >
-                  <div className="overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:shadow-lg">
+                  <div className="glass overflow-hidden rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                     {/* Product Image */}
-                    <div className="relative aspect-square w-full overflow-hidden">
+                    <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
                       {product.images[0] ? (
                         <Image
                           src={product.images[0]}
                           alt={product.name}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       ) : (
-                        <div className="flex h-full items-center justify-center bg-gray-50 text-gray-300">
+                        <div className="flex h-full items-center justify-center text-gray-400">
                           <span className="text-sm">Sem imagem</span>
                         </div>
                       )}
                     </div>
 
                     {/* Product Info */}
-                    <div className="p-4">
-                      <div className="mb-1 text-xs font-medium text-blue-600">
+                    <div className="p-6">
+                      <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-blue-600">
                         {product.category.name}
                       </div>
-                      <h3 className="mb-2 text-base font-semibold text-gray-900 line-clamp-2">
+                      <h3 className="mb-2 text-lg font-bold text-gray-900 line-clamp-2">
                         {product.name}
                       </h3>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-lg font-semibold text-gray-900">
+                      <div className="flex items-center justify-between">
+                        <span className="gradient-text text-2xl font-bold">
                           R$ {Number(product.price).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </span>
+                        {product.stock > 0 ? (
+                          <span className="text-xs font-semibold text-green-600">
+                            Em estoque
+                          </span>
+                        ) : (
+                          <span className="text-xs font-semibold text-red-600">
+                            Esgotado
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -196,7 +251,7 @@ export default async function HomePage() {
       {/* Footer */}
       <footer className="border-t border-gray-200 py-12 mt-20">
         <div className="container mx-auto px-6 text-center text-gray-600">
-          <p className="text-xs">© 2025 WbraStore. Todos os direitos reservados.</p>
+          <p>© 2025 WbraStore. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>
