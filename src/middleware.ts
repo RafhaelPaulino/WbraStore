@@ -1,48 +1,33 @@
-import { auth } from '@/lib/auth'
 import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export default auth((req) => {
-  const { pathname } = req.nextUrl
-  const isLoggedIn = !!req.auth
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
 
-  // Public routes
-  const isPublicRoute =
-    pathname === '/' ||
-    pathname.startsWith('/products') ||
-    pathname.startsWith('/login') ||
-    pathname.startsWith('/register') ||
-    pathname.startsWith('/api/auth')
+  // Get session token from cookies
+  const sessionToken = request.cookies.get('next-auth.session-token')?.value ||
+                       request.cookies.get('__Secure-next-auth.session-token')?.value
 
-  // Admin routes
-  const isAdminRoute = pathname.startsWith('/admin')
+  const isLoggedIn = !!sessionToken
 
-  // Auth routes (login, register)
-  const isAuthRoute = pathname.startsWith('/login') || pathname.startsWith('/register')
-
-  // Redirect logged-in users away from auth pages
-  if (isAuthRoute && isLoggedIn) {
-    return NextResponse.redirect(new URL('/', req.url))
+  // Admin routes protection (basic - will be enhanced with role check in layout)
+  if (pathname.startsWith('/admin') && !isLoggedIn) {
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  // Protect admin routes
-  if (isAdminRoute) {
-    if (!isLoggedIn) {
-      return NextResponse.redirect(new URL('/login', req.url))
-    }
-
-    if (req.auth?.user?.role !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/', req.url))
-    }
+  // Redirect logged-in users away from auth pages
+  if ((pathname.startsWith('/login') || pathname.startsWith('/register')) && isLoggedIn) {
+    return NextResponse.redirect(new URL('/', request.url))
   }
 
   // Protect cart and checkout routes
   if ((pathname.startsWith('/cart') || pathname.startsWith('/checkout')) && !isLoggedIn) {
-    return NextResponse.redirect(new URL('/login', req.url))
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 
   return NextResponse.next()
-})
+}
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
